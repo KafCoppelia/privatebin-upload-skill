@@ -1,71 +1,69 @@
 # privatebin-upload-skill
 
-A skill that uploads content to any [PrivateBin](https://privatebin.info/) instance and returns a shareable link.
+<p align="center">
+  A skill that uploads content to any <a href="https://privatebin.info/">PrivateBin</a> instance and returns a shareable link.
+</p>
 
-## Requirements
-
-- `privatebin` CLI (see [Install CLI](#install-cli) below)
-- A PrivateBin instance (default: `https://privatebin.net`, or self-hosted)
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
+  <a href="https://github.com/gearnode/privatebin"><img src="https://img.shields.io/badge/requires-privatebin--cli-orange" alt="requires: privatebin-cli"></a>
+  <a href="https://github.com/KafCoppelia/privatebin-upload-skill"><img src="https://img.shields.io/badge/npx_skills_add-KafCoppelia%2Fprivatebin--upload--skill-brightgreen" alt="Install with skills"></a>
+</p>
 
 ---
 
+## Install Skill
+
+```bash
+npx skills add KafCoppelia/privatebin-upload-skill
+```
+
+## Requirements
+
+- `privatebin` CLI — see [Install CLI](#install-cli) below
+- A PrivateBin instance (default: `https://privatebin.net`, or self-hosted)
+
 ## Install CLI
 
-Install `privatebin-cli` first:
-
-| OS                        | Command                                                                                           |
-| ------------------------- | ------------------------------------------------------------------------------------------------- |
-| **macOS**           | `brew install privatebin-cli`                                                                   |
-| **Arch Linux**      | `yay -Sy privatebin-cli` (or `privatebin-cli-bin`)                                            |
-| **Ubuntu / Debian** | `apt install privatebin-cli`                                                                    |
-| **Prebuilt**        | [Download from releases](https://github.com/gearnode/privatebin/releases/latest)                     |
-| **Source**          | `git clone https://github.com/gearnode/privatebin.git && cd privatebin && make && make install` |
+| OS | Command |
+|---|---|
+| **macOS** | `brew install privatebin-cli` |
+| **Arch Linux** | `yay -Sy privatebin-cli` (or `privatebin-cli-bin`) |
+| **Ubuntu / Debian** | `apt install privatebin-cli` |
+| **Prebuilt** | [Download from releases](https://github.com/gearnode/privatebin/releases/latest) |
+| **Source** | `git clone https://github.com/gearnode/privatebin.git && cd privatebin && make && make install` |
 
 ### Configure
 
 ```bash
-# Default (privatebin.net)
-privatebin init
-
-# Custom host
-privatebin init --host https://bin.example.com
-
-# Force overwrite
-privatebin init --host https://bin.example.com --force
+privatebin init                                        # default: privatebin.net
+privatebin init --host https://bin.example.com         # custom host
+privatebin init --host https://bin.example.com --force # overwrite existing
 ```
 
-### Config file: `~/.config/privatebin/config.json`
+Config file (`~/.config/privatebin/config.json`):
 
 ```json
 {
-  "bin": [{ "name": "mybin", "host": "https://bin.example.com" }],
+  "bin": [{ "name": "", "host": "https://bin.example.com" }],
   "expire": "1day",
   "formatter": "plaintext",
   "gzip": true
 }
 ```
 
-### Multiple instances
+**Multiple instances** — define named entries, select with `--bin=<name>`:
 
 ```json
 {
   "bin": [
-    { "name": "mybin", "host": "https://privatebin.net" },
+    { "name": "",     "host": "https://privatebin.net" },
     { "name": "work", "host": "https://bin.example.com" }
   ]
 }
 ```
 
-Use with `--bin=work` flag.
-
-### Verify installation
-
-```bash
-privatebin --version
-privatebin create --help 2>&1 | head -1
-```
-
----
+Verify: `privatebin --version`
 
 ## Usage
 
@@ -80,23 +78,19 @@ Trigger naturally in conversation:
 "Upload this file to my work instance"
 ```
 
----
-
 ## Options
 
-| Option                   | Values                                                | Default   |
-| ------------------------ | ----------------------------------------------------- | --------- |
-| `--expire`             | 5min, 10min, 1hour, 1day, 1week, 1month, 1year, never | 1day      |
-| `--formatter`          | plaintext, markdown, syntaxhighlighting               | plaintext |
-| `--burn-after-reading` | —                                                    | off       |
-| `--open-discussion`    | —                                                    | off       |
-| `--password`           | any string                                            | none      |
-| `--gzip`               | —                                                    | off       |
-| `--attachment`         | —                                                    | off       |
-| `--bin` *(global)*   | named instance from config                            | default   |
-| `--proxy` *(global)* | http/https/socks5 URL                                 | none      |
-
----
+| Option | Values | Default |
+|---|---|---|
+| `--expire` | 5min, 10min, 1hour, 1day, 1week, 1month, 1year, never | 1day |
+| `--formatter` | plaintext, markdown, syntaxhighlighting | plaintext |
+| `--burn-after-reading` | — | off |
+| `--open-discussion` | — | off |
+| `--password` | any string | none |
+| `--gzip` | — | off |
+| `--attachment` | — | off |
+| `--bin` *(global)* | named instance from config | default |
+| `--proxy` *(global)* | http/https/socks5 URL | none |
 
 ## Skill Definition
 
@@ -104,4 +98,4 @@ Agent instructions are in [SKILL.md](SKILL.md).
 
 ## License
 
-MIT
+[MIT](LICENSE)

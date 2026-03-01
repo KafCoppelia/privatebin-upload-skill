@@ -5,7 +5,7 @@
   "summary": "Upload content to PrivateBin and return a shareable link.",
   "author": "kafcoppelia",
   "license": "MIT",
-  "repository": "https://github.com/kafcoppelia/privatebin-upload",
+  "repository": "https://github.com/KafCoppelia/privatebin-upload-skill",
   "keywords": [
     "privatebin",
     "paste",
